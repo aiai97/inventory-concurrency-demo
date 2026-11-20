@@ -5,12 +5,13 @@ spring:
     username: sa
     password:
   jpa:
+    # Show SQL statements emitted by Hibernate.
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
-        show_sql: true
         format_sql: true
     open-in-view: false
   h2:
@@ -18,6 +19,18 @@ spring:
       enabled: true
       path: /h2-console
 
+logging:
+  level:
+    # Log SQL statements and parameter bindings.
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    # Log SQL result extraction.
+    org.hibernate.orm.jdbc.extract: TRACE
+    # Log second-level cache activity and internal operations.
+    org.hibernate.cache: DEBUG
+    org.hibernate.cache.spi: TRACE
+    # Log Hibernate transaction activity.
+    org.hibernate.resource.transaction: DEBUG
+
 server:
   port: 8080
-
